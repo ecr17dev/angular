@@ -1,0 +1,134 @@
+@import 'tailwindcss';
+
+:root {
+  --surface-page: #f4f7fb;
+  --surface-raised: #f8fafd;
+  --surface-card: #ffffff;
+  --border-soft: #d8e1ed;
+  --text-primary: #1d2939;
+  --text-secondary: #344054;
+  --text-muted: #667085;
+  --brand: #1e63d5;
+  --brand-strong: #154ab0;
+  --brand-soft: #bfdbff;
+  --accent: #0ea5a8;
+  --accent-soft: #b8f3ef;
+  --ok: #16a34a;
+  --ok-strong: #166534;
+  --warn: #d97706;
+  --danger: #dc2626;
+  --danger-strong: #991b1b;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 18px;
+  --shadow-xs: 0 1px 2px rgb(16 24 40 / 7%);
+  --shadow-sm: 0 6px 18px rgb(15 23 42 / 8%);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Sora', 'Avenir Next', 'Segoe UI', sans-serif;
+  background: var(--surface-page);
+  color: var(--text-primary);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: 'Space Grotesk', 'Sora', 'Avenir Next', 'Segoe UI', sans-serif;
+}
+
+a,
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+a {
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--brand-soft) 75%, white 25%);
+  outline-offset: 2px;
+}
+
+.lesson-demo {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.lesson-demo-intro {
+  margin: 0;
+  border-left: 3px solid color-mix(in srgb, var(--brand) 45%, transparent 55%);
+  padding: 0.45rem 0.55rem;
+  border-radius: 0 8px 8px 0;
+  background: color-mix(in srgb, var(--brand-soft) 16%, white 84%);
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+
+.lesson-demo-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.lesson-btn {
+  border: 1px solid var(--border-soft);
+  border-radius: 9px;
+  background: color-mix(in srgb, var(--surface-page) 42%, white 58%);
+  color: var(--text-primary);
+  padding: 0.32rem 0.72rem;
+  cursor: pointer;
+  transition: transform 120ms ease, border-color 120ms ease;
+}
+
+.lesson-btn:hover {
+  transform: translateY(-1px);
+  border-color: color-mix(in srgb, var(--brand) 38%, var(--border-soft) 62%);
+}
+
+.lesson-btn-primary {
+  border-color: var(--brand);
+  background: var(--brand);
+  color: #ffffff;
+}
+
+.lesson-input,
+.lesson-select {
+  border: 1px solid var(--border-soft);
+  border-radius: 9px;
+  background: #ffffff;
+  color: var(--text-primary);
+  padding: 0.35rem 0.55rem;
+}
+
+.lesson-chip {
+  margin: 0;
+  border-radius: 999px;
+  justify-self: start;
+  padding: 0.22rem 0.62rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.lesson-chip-ok {
+  color: var(--ok-strong);
+  background: color-mix(in srgb, var(--ok) 14%, white 86%);
+}
+
+.lesson-chip-warn {
+  color: color-mix(in srgb, var(--warn) 88%, black 12%);
+  background: color-mix(in srgb, var(--warn) 15%, white 85%);
+}
