@@ -1,0 +1,73 @@
+<div class="app-layout">
+  <aside class="sidebar" aria-label="Menu del laboratorio">
+    <header class="brand-block">
+      <a class="brand" [routerLink]="levelHomeLink(currentLevel())" aria-label="Inicio del curso">
+        <tabler-icon [icon]="shellIcons.brand" [size]="20" [stroke]="2" aria-hidden="true" />
+        <span>Curso Angular</span>
+      </a>
+      <p class="subtitle">Ruta guiada para devs Vue que quieren dominar Angular rapido.</p>
+    </header>
+
+    <section class="level-switch" aria-label="Selector de nivel">
+      @for (level of levels; track level) {
+        <a
+          class="level-link"
+          [routerLink]="levelHomeLink(level)"
+          routerLinkActive="level-link-active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          {{ levelLabel(level) }}
+        </a>
+      }
+    </section>
+
+    <section class="progress-card" aria-label="Resumen de progreso">
+      <p class="progress-label">
+        <tabler-icon [icon]="shellIcons.progress" [size]="16" [stroke]="2" aria-hidden="true" />
+        {{ progressLabel() }}
+      </p>
+      <div class="progress-track" role="progressbar" [attr.aria-valuenow]="progressPercent()" aria-valuemin="0" aria-valuemax="100">
+        <span [style.width.%]="progressPercent()"></span>
+      </div>
+      <p class="minutes">
+        <tabler-icon [icon]="shellIcons.duration" [size]="16" [stroke]="2" aria-hidden="true" />
+        {{ session.minutes(currentLevel()) }} min de practica
+      </p>
+    </section>
+
+    <nav class="sidebar-nav" aria-label="Navegacion de modulos">
+      <a class="nav-link" [routerLink]="levelHomeLink(currentLevel())" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+        <span class="nav-main">
+          <tabler-icon [icon]="shellIcons.home" [size]="16" [stroke]="2" aria-hidden="true" />
+          <span>Inicio {{ levelLabel(currentLevel()) }}</span>
+        </span>
+      </a>
+
+      @for (lesson of lessons(); track lesson.slug) {
+        <a class="nav-link" [class.done]="session.isCompleted(currentLevel(), lesson.slug)" [routerLink]="lessonLink(lesson.slug)" routerLinkActive="active">
+          <span class="nav-main">
+            <tabler-icon [icon]="iconFor(lesson)" [size]="16" [stroke]="2" aria-hidden="true" />
+            <span>{{ lesson.order }}. {{ lesson.title }}</span>
+          </span>
+          <span class="chip" [class.chip-done]="session.isCompleted(currentLevel(), lesson.slug)">
+            @if (session.isCompleted(currentLevel(), lesson.slug)) {
+              <tabler-icon [icon]="shellIcons.done" [size]="14" [stroke]="2" aria-hidden="true" />
+              Listo
+            } @else {
+              En curso
+            }
+          </span>
+        </a>
+      }
+    </nav>
+
+    <a class="guide-link" href="/docs/vue-to-angular-bridge.md" target="_blank" rel="noopener">
+      <tabler-icon [icon]="shellIcons.module" [size]="16" [stroke]="2" aria-hidden="true" />
+      Guia puente Vue -> Angular
+    </a>
+  </aside>
+
+  <main class="content">
+    <router-outlet />
+  </main>
+</div>
